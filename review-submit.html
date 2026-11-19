@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Share your experience with Iron Grid Global. Reviews are sent to our team for review before publication.">
+  <title>Leave a Review | Iron Grid Global</title>
+  <style>
+    :root{color-scheme:dark;--bg:#111215;--card:#191b20;--line:#383c45;--copper:#c8967b;--light:#e2b69e;--text:#f2f4f7;--muted:#a6acb8;--gold:#f2bd61}*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:32px 16px;display:grid;place-items:center;background:radial-gradient(circle at top right,#c8967b29,transparent 45%),var(--bg);color:var(--text);font:16px/1.6 Arial,Helvetica,sans-serif}.card{width:min(100%,680px);padding:clamp(22px,5vw,40px);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 20px 60px #0005}a{color:var(--light)}h1{line-height:1.2;margin:0 0 10px}h1 span{color:var(--light)}.intro,.notice{color:var(--muted)}.notice{margin:20px 0;padding:13px 15px;border:1px solid #c8967b66;border-radius:8px;background:#c8967b12;font-size:.92rem}label{display:block;margin:18px 0 7px;font-weight:700}.field{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:7px;background:#111215;color:var(--text);font:inherit}.field:focus{outline:2px solid var(--copper);outline-offset:2px}.stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:6px;margin-top:8px}.stars input{position:absolute;opacity:0;width:1px;height:1px}.stars label{margin:0;cursor:pointer;font-size:2rem;color:#666;line-height:1}.stars label:hover,.stars label:hover~label,.stars input:checked~label{color:var(--gold)}.stars input:focus-visible+label{outline:2px solid var(--light);outline-offset:4px;border-radius:3px}textarea.field{min-height:150px;resize:vertical}.button{margin-top:20px;padding:12px 18px;border:0;border-radius:7px;background:linear-gradient(135deg,var(--light),var(--copper));color:#111;font:700 1rem Arial,Helvetica,sans-serif;cursor:pointer}.button:hover{filter:brightness(1.08)}.back{display:inline-block;margin-top:20px;text-decoration:none}.small{font-size:.84rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <p class="small"><a href="./">IRON GRID GLOBAL FZE LLC</a></p>
+    <h1>Leave us a <span>Review</span></h1>
+    <p class="intro">Tell us about your experience. Your feedback helps us improve and helps other customers make informed choices.</p>
+    <p class="notice"><strong>What happens next?</strong> Your review will open as a message in WhatsApp. Please press Send in WhatsApp to submit it. Reviews are checked by our team before they are published; submitting a review does not automatically post it on the website.</p>
+    <form id="reviewForm">
+      <label for="reviewerName">Your name</label>
+      <input class="field" id="reviewerName" name="name" autocomplete="name" required maxlength="100" placeholder="Enter the name you want shown with your review">
+      <fieldset style="border:0;padding:0;margin:20px 0 0">
+        <legend style="font-weight:700">Your rating</legend>
+        <div class="stars" role="radiogroup" aria-label="Choose a rating from one to five stars">
+          <input type="radio" id="star5" name="rating" value="5" required><label for="star5" aria-label="5 stars" title="5 stars">★</label>
+          <input type="radio" id="star4" name="rating" value="4"><label for="star4" aria-label="4 stars" title="4 stars">★</label>
+          <input type="radio" id="star3" name="rating" value="3"><label for="star3" aria-label="3 stars" title="3 stars">★</label>
+          <input type="radio" id="star2" name="rating" value="2"><label for="star2" aria-label="2 stars" title="2 stars">★</label>
+          <input type="radio" id="star1" name="rating" value="1"><label for="star1" aria-label="1 star" title="1 star">★</label>
+        </div>
+      </fieldset>
+      <label for="reviewText">Your review</label>
+      <textarea class="field" id="reviewText" name="review" required maxlength="1500" placeholder="Share details about your experience"></textarea>
+      <button class="button" type="submit">Continue to WhatsApp</button>
+      <p class="small">Your name, rating, and review text will be included in the WhatsApp draft sent to Iron Grid Global.</p>
+    </form>
+    <a class="back" href="./#reviews">← Back to customer reviews</a>
+  </main>
+  <script>
+    document.getElementById('reviewForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const name = document.getElementById('reviewerName').value.trim();
+      const review = document.getElementById('reviewText').value.trim();
+      const rating = this.querySelector('input[name="rating"]:checked');
+      if (!name || !review || !rating) return;
+      const stars = '★'.repeat(Number(rating.value)) + '☆'.repeat(5 - Number(rating.value));
+      const message = `Hello Iron Grid Global, I would like to submit a customer review.\n\nName: ${name}\nRating: ${stars} (${rating.value}/5)\nReview: ${review}\n\nI understand that the review will be checked before being published.`;
+      window.location.href = `https://wa.me/971563870267?text=${encodeURIComponent(message)}`;
+    });
+  </script>
+</body>
+</html>
